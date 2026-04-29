@@ -186,9 +186,32 @@
       box-shadow: var(--shadow);
     }
 
-    .hero-card h2 {
-      font-size: 1.15rem;
-      margin-bottom: 16px;
+    .profile-box {
+      text-align: center;
+      margin-bottom: 24px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .profile-photo {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 16px;
+      border: 4px solid rgba(147, 197, 253, 0.65);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .profile-box h2 {
+      margin-bottom: 6px;
+    }
+
+    .profile-box p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      margin: 0;
     }
 
     .quick-list {
@@ -386,6 +409,25 @@
       padding: 16px;
       font-weight: 700;
       color: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .cert-item span {
+      flex: 1;
+    }
+
+    .cert-link {
+      white-space: nowrap;
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .cert-link:hover {
+      text-decoration: underline;
     }
 
     .contact {
@@ -455,6 +497,11 @@
       .contact-card {
         padding: 22px;
       }
+
+      .cert-item {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -463,11 +510,13 @@
   <header class="topbar">
     <nav class="container nav">
       <a href="#inicio" class="brand">Matias<span>Campos</span></a>
+
       <ul class="menu">
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#projetos">Projetos</a></li>
         <li><a href="#habilidades">Habilidades</a></li>
         <li><a href="#experiencia">Experiência</a></li>
+        <li><a href="#certificacoes">Certificações</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
     </nav>
@@ -478,20 +527,31 @@
       <div class="container hero-grid">
         <div>
           <div class="eyebrow">Engenharia da Computação • Dados • Segurança</div>
+
           <h1>Matias da Silva <span>Campos</span></h1>
+
           <p>
             Graduando em Engenharia da Computação pela UNIFEI, com experiência em suporte técnico,
             redes TCP/IP, desenvolvimento de software, análise de dados, dashboards e fundamentos de cibersegurança.
           </p>
+
           <div class="actions">
             <a href="#projetos" class="btn btn-primary">Ver projetos</a>
             <a href="mailto:matiascampos20@gmail.com" class="btn btn-secondary">Entrar em contato</a>
+            <a href="docs/curriculo-matias-campos.pdf" target="_blank" class="btn btn-secondary">Baixar currículo</a>
             <a href="https://linkedin.com/in/matias-31-campos" target="_blank" class="btn btn-secondary">LinkedIn</a>
           </div>
         </div>
 
         <aside class="hero-card">
+          <div class="profile-box">
+            <img class="profile-photo" src="assets/foto-perfil.jpg" alt="Foto de Matias da Silva Campos" />
+            <h2>Matias Campos</h2>
+            <p>Engenharia da Computação • UNIFEI</p>
+          </div>
+
           <h2>Focos principais</h2>
+
           <ul class="quick-list">
             <li>Desenvolvimento com Python, C, C++ e SQL</li>
             <li>Análise de dados, dashboards e visualização</li>
@@ -529,6 +589,7 @@
               Busco atuar em projetos que envolvam desenvolvimento de software, análise de dados, automação, dashboards,
               redes, Linux e cibersegurança defensiva.
             </p>
+
             <div class="tags">
               <span class="tag">Python</span>
               <span class="tag">Dados</span>
@@ -555,20 +616,24 @@
         <div class="projects-grid">
           <article class="card project-card">
             <h3>Dashboard PRH</h3>
+
             <p>
               Dashboard criado para organizar e visualizar informações relacionadas ao programa PRH-ANP 046.1,
               facilitando o acompanhamento de indicadores e a análise de dados.
             </p>
+
             <p>
               <strong>Meu papel:</strong> estruturação do projeto, organização dos dados, criação das visualizações,
               desenvolvimento do dashboard e documentação no GitHub.
             </p>
+
             <div class="project-meta">
               <span>Python</span>
               <span>Dados</span>
               <span>Dashboard</span>
               <span>GitHub</span>
             </div>
+
             <div class="project-links">
               <a href="COLE_AQUI_O_LINK_DO_REPOSITORIO_DASHBOARD_PRH" target="_blank">Ver repositório →</a>
               <a href="COLE_AQUI_O_LINK_DO_DEPLOY" target="_blank">Ver demonstração →</a>
@@ -577,10 +642,12 @@
 
           <article class="card project-card">
             <h3>Iniciação Científica — Hidrogênio Verde</h3>
+
             <p>
               Participação em projeto acadêmico relacionado ao PRH-ANP 046.1, com foco em hidrogênio verde,
               análise de informações técnicas e desenvolvimento de competências em pesquisa aplicada.
             </p>
+
             <div class="project-meta">
               <span>Pesquisa</span>
               <span>Engenharia</span>
@@ -590,10 +657,12 @@
 
           <article class="card project-card">
             <h3>Iniciação Científica — CyberSecurity</h3>
+
             <p>
               Projeto acadêmico voltado à segurança da informação, análise de ameaças, boas práticas de proteção,
               fundamentos de redes e conceitos de defesa cibernética.
             </p>
+
             <div class="project-meta">
               <span>Cybersecurity</span>
               <span>Blue Team</span>
@@ -604,10 +673,12 @@
 
           <article class="card project-card">
             <h3>Monitoramento de Dados com MQTT</h3>
+
             <p>
               Atuação com análise de dados de sensores em sistemas de água e esgoto, utilizando MQTT para comunicação
               e monitoramento de dados em tempo real.
             </p>
+
             <div class="project-meta">
               <span>MQTT</span>
               <span>Sensores</span>
@@ -741,17 +812,48 @@
       <div class="container">
         <div class="section-title">
           <small>Certificações</small>
-          <h2>Cursos e certificações</h2>
+          <h2>Cursos, certificações e documentos</h2>
+          <p>
+            Além de listar os cursos, esta seção pode direcionar para os certificados em PDF ou imagem,
+            dando mais credibilidade às formações apresentadas.
+          </p>
         </div>
 
         <div class="cert-grid">
-          <div class="cert-item">Fundamentos de Segurança Cibernética — Cisco</div>
-          <div class="cert-item">CyberSecurity Essentials — UNIFEI</div>
-          <div class="cert-item">CCNA 1: Introdução às Redes — Cisco</div>
-          <div class="cert-item">NDG Linux Unhatched — Cisco</div>
-          <div class="cert-item">Introdução ao Hack e Pentest — Solyd</div>
-          <div class="cert-item">CyberOT ICS — Industrial Networking Essentials</div>
-          <div class="cert-item">Palestra: Ransomware e Segurança Defensiva</div>
+          <div class="cert-item">
+            <span>Fundamentos de Segurança Cibernética — Cisco</span>
+            <a class="cert-link" href="certificados/fundamentos-seguranca-cibernetica-cisco.pdf" target="_blank">Ver documento →</a>
+          </div>
+
+          <div class="cert-item">
+            <span>CyberSecurity Essentials — UNIFEI</span>
+            <a class="cert-link" href="certificados/cybersecurity-essentials-unifei.pdf" target="_blank">Ver documento →</a>
+          </div>
+
+          <div class="cert-item">
+            <span>CCNA 1: Introdução às Redes — Cisco</span>
+            <a class="cert-link" href="certificados/ccna-1-introducao-as-redes-cisco.pdf" target="_blank">Ver documento →</a>
+          </div>
+
+          <div class="cert-item">
+            <span>NDG Linux Unhatched — Cisco</span>
+            <a class="cert-link" href="certificados/ndg-linux-unhatched-cisco.pdf" target="_blank">Ver documento →</a>
+          </div>
+
+          <div class="cert-item">
+            <span>Introdução ao Hack e Pentest — Solyd</span>
+            <a class="cert-link" href="certificados/introducao-hack-pentest-solyd.pdf" target="_blank">Ver documento →</a>
+          </div>
+
+          <div class="cert-item">
+            <span>CyberOT ICS — Industrial Networking Essentials</span>
+            <a class="cert-link" href="certificados/cyberot-ics-industrial-networking-essentials.pdf" target="_blank">Ver documento →</a>
+          </div>
+
+          <div class="cert-item">
+            <span>Palestra: Ransomware e Segurança Defensiva</span>
+            <a class="cert-link" href="certificados/ransomware-seguranca-defensiva.pdf" target="_blank">Ver documento →</a>
+          </div>
         </div>
       </div>
     </section>
@@ -779,13 +881,16 @@
         <div class="section-title">
           <small>Contato</small>
           <h2>Vamos conversar?</h2>
-          <p>Estou aberto a oportunidades, projetos, estágios e colaborações nas áreas de desenvolvimento, dados, redes e cibersegurança.</p>
+          <p>
+            Estou aberto a oportunidades, projetos, estágios e colaborações nas áreas de desenvolvimento,
+            dados, redes e cibersegurança.
+          </p>
         </div>
 
         <div class="contact-card">
           <p>E-mail: <a href="mailto:matiascampos20@gmail.com">matiascampos20@gmail.com</a></p>
           <p>LinkedIn: <a href="https://linkedin.com/in/matias-31-campos" target="_blank">linkedin.com/in/matias-31-campos</a></p>
-          <p>GitHub: <a href="https://github.com/MatiasSCampos" target="_blank">Adicionar GitHub</a></p>
+          <p>GitHub: <a href="https://github.com/MatiasSCampos" target="_blank">github.com/MatiasSCampos</a></p>
           <p>Localização: Itajubá — MG</p>
         </div>
       </div>
