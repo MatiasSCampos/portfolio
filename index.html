@@ -469,6 +469,68 @@
       object-position: top;
     }
 
+    .gallery-item img {
+      cursor: zoom-in;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .gallery-item img:hover {
+      transform: scale(1.03);
+      opacity: 0.92;
+    }
+
+    .image-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.88);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .image-modal.open {
+      display: flex;
+    }
+
+    .image-modal-content {
+      position: relative;
+      max-width: 95vw;
+      max-height: 92vh;
+    }
+
+    .image-modal-content img {
+      max-width: 95vw;
+      max-height: 86vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 16px;
+      background: #ffffff;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #111827;
+      font-size: 26px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .image-modal-close:hover {
+      background: #e5e7eb;
+    }
+
     .gallery-item p {
       padding: 12px 14px;
       color: #334155;
@@ -582,6 +644,20 @@
       .hero-card,
       .contact-card {
         padding: 22px;
+      }
+
+      .cert-item {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .image-modal {
+        padding: 12px;
+      }
+
+      .image-modal-close {
+        top: -12px;
+        right: -8px;
       }
     }
   </style>
@@ -1115,5 +1191,45 @@
       <p>© 2025 Matias da Silva Campos. Desenvolvido para portfólio profissional.</p>
     </div>
   </footer>
+
+  <div class="image-modal" id="imageModal">
+    <div class="image-modal-content">
+      <button class="image-modal-close" id="closeModal" aria-label="Fechar imagem">&times;</button>
+      <img id="modalImage" src="" alt="Imagem ampliada" />
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalImage = document.getElementById("modalImage");
+    const closeModal = document.getElementById("closeModal");
+
+    document.querySelectorAll(".gallery-item img").forEach((image) => {
+      image.addEventListener("click", () => {
+        modalImage.src = image.src;
+        modalImage.alt = image.alt;
+        modal.classList.add("open");
+      });
+    });
+
+    closeModal.addEventListener("click", () => {
+      modal.classList.remove("open");
+      modalImage.src = "";
+    });
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.classList.remove("open");
+        modalImage.src = "";
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        modal.classList.remove("open");
+        modalImage.src = "";
+      }
+    });
+  </script>
 </body>
 </html>
