@@ -482,9 +482,9 @@
     .image-modal {
       display: none;
       position: fixed;
-      z-index: 9999;
+      z-index: 99999;
       inset: 0;
-      background: rgba(2, 6, 23, 0.88);
+      background: rgba(2, 6, 23, 0.92);
       align-items: center;
       justify-content: center;
       padding: 24px;
@@ -496,12 +496,12 @@
 
     .image-modal-content {
       position: relative;
-      max-width: 95vw;
+      max-width: 96vw;
       max-height: 92vh;
     }
 
     .image-modal-content img {
-      max-width: 95vw;
+      max-width: 96vw;
       max-height: 86vh;
       width: auto;
       height: auto;
@@ -523,6 +523,7 @@
       color: #111827;
       font-size: 26px;
       font-weight: bold;
+      line-height: 1;
       cursor: pointer;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
     }
@@ -967,15 +968,15 @@
 
         <div class="gallery-grid">
           <div class="gallery-item">
-            <img src="assets/certificacoes-cisco-1.jpg" alt="Certificações Cisco Networking Academy - parte 1" />
+            <img src="assets/certificacoes-cisco-1.jpg" alt="Certificações Cisco Networking Academy - parte 1" onclick="openImageModal(this)" />
             <p>Certificações Cisco — visão 1</p>
           </div>
           <div class="gallery-item">
-            <img src="assets/certificacoes-cisco-2.jpg" alt="Certificações Cisco Networking Academy - parte 2" />
+            <img src="assets/certificacoes-cisco-2.jpg" alt="Certificações Cisco Networking Academy - parte 2" onclick="openImageModal(this)" />
             <p>Certificações Cisco — visão 2</p>
           </div>
           <div class="gallery-item">
-            <img src="assets/certificacoes-cisco-3.jpg" alt="Certificações Cisco Networking Academy - parte 3" />
+            <img src="assets/certificacoes-cisco-3.jpg" alt="Certificações Cisco Networking Academy - parte 3" onclick="openImageModal(this)" />
             <p>Certificações Cisco — visão 3</p>
           </div>
         </div>
@@ -1194,42 +1195,44 @@
 
   <div class="image-modal" id="imageModal">
     <div class="image-modal-content">
-      <button class="image-modal-close" id="closeModal" aria-label="Fechar imagem">&times;</button>
+      <button class="image-modal-close" type="button" onclick="closeImageModal()" aria-label="Fechar imagem">&times;</button>
       <img id="modalImage" src="" alt="Imagem ampliada" />
     </div>
   </div>
 
   <script>
-    const modal = document.getElementById("imageModal");
-    const modalImage = document.getElementById("modalImage");
-    const closeModal = document.getElementById("closeModal");
+    function openImageModal(image) {
+      const modal = document.getElementById("imageModal");
+      const modalImage = document.getElementById("modalImage");
 
-    document.querySelectorAll(".gallery-item img").forEach((image) => {
-      image.addEventListener("click", () => {
-        modalImage.src = image.src;
-        modalImage.alt = image.alt;
-        modal.classList.add("open");
-      });
-    });
+      modalImage.src = image.src;
+      modalImage.alt = image.alt || "Imagem ampliada";
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
 
-    closeModal.addEventListener("click", () => {
+    function closeImageModal() {
+      const modal = document.getElementById("imageModal");
+      const modalImage = document.getElementById("modalImage");
+
       modal.classList.remove("open");
       modalImage.src = "";
-    });
+      document.body.style.overflow = "";
+    }
 
-    modal.addEventListener("click", (event) => {
+    document.addEventListener("click", function (event) {
+      const modal = document.getElementById("imageModal");
       if (event.target === modal) {
-        modal.classList.remove("open");
-        modalImage.src = "";
+        closeImageModal();
       }
     });
 
-    document.addEventListener("keydown", (event) => {
+    document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") {
-        modal.classList.remove("open");
-        modalImage.src = "";
+        closeImageModal();
       }
     });
   </script>
+
 </body>
 </html>
