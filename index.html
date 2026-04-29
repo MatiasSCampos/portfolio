@@ -3,161 +3,799 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matias Campos | Portfólio</title>
+  <meta name="description" content="Portfólio de Matias da Silva Campos — Engenharia da Computação, desenvolvimento, dados, redes e cibersegurança." />
+  <title>Matias da Silva Campos | Portfólio</title>
 
   <style>
-    body {
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --light: #f8fafc;
+      --border: #e5e7eb;
+      --accent: #dbeafe;
+      --radius: 18px;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #222;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--light);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 42px;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
-    header p {
-      font-size: 18px;
-      margin-top: 10px;
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: #ffffff;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .brand span {
+      color: #93c5fd;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
       color: #d1d5db;
+      font-size: 0.95rem;
+    }
+
+    .menu a:hover {
+      color: #ffffff;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.45), transparent 36%),
+        linear-gradient(135deg, #0f172a 0%, #111827 52%, #1e293b 100%);
+      color: #ffffff;
+      padding: 96px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: rgba(147, 197, 253, 0.12);
+      border: 1px solid rgba(147, 197, 253, 0.3);
+      color: #bfdbfe;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 4.8rem);
+      line-height: 1.05;
+      margin-bottom: 18px;
+      letter-spacing: -1.6px;
+    }
+
+    .hero h1 span {
+      color: #93c5fd;
+    }
+
+    .hero p {
+      color: #d1d5db;
+      font-size: 1.12rem;
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.13);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h2 {
+      font-size: 1.15rem;
+      margin-bottom: 16px;
+    }
+
+    .quick-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      color: #e5e7eb;
+    }
+
+    .quick-list li {
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .quick-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #60a5fa;
+      position: absolute;
+      left: 0;
+      top: 9px;
     }
 
     section {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
+      padding: 72px 0;
     }
 
-    h2 {
+    .section-title {
+      margin-bottom: 28px;
+    }
+
+    .section-title small {
+      display: block;
+      color: var(--primary);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.15;
       color: #111827;
-      border-bottom: 2px solid #2563eb;
-      padding-bottom: 8px;
+    }
+
+    .section-title p {
+      max-width: 760px;
+      color: var(--muted);
+      margin-top: 12px;
     }
 
     .card {
-      background: white;
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      margin-top: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
     }
 
-    .skills span {
-      display: inline-block;
-      background: #e0ecff;
-      color: #1d4ed8;
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      background: var(--accent);
+      color: #1e40af;
       padding: 8px 12px;
-      border-radius: 20px;
-      margin: 6px;
-      font-size: 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
     }
 
-    a {
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: bold;
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .project-card h3 {
+      font-size: 1.35rem;
+      color: #111827;
+    }
+
+    .project-card p {
+      color: var(--muted);
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .project-meta span {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #e2e8f0;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .project-links {
+      margin-top: auto;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .project-links a {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .skill-card h3 {
+      color: #111827;
+      margin-bottom: 12px;
+      font-size: 1.08rem;
+    }
+
+    .skill-card ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+    }
+
+    .skill-card li::before {
+      content: "• ";
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .timeline-date {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .timeline-content h3 {
+      color: #111827;
+      margin-bottom: 6px;
+    }
+
+    .timeline-content p {
+      color: var(--muted);
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .cert-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .contact {
+      background: var(--bg);
+      color: #ffffff;
+    }
+
+    .contact .section-title h2,
+    .contact .section-title p {
+      color: #ffffff;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .contact-card a,
+    .contact-card p {
+      color: #dbeafe;
+      font-weight: 700;
     }
 
     footer {
+      background: #020617;
+      color: #cbd5e1;
       text-align: center;
-      padding: 30px;
-      background: #111827;
-      color: white;
-      margin-top: 60px;
+      padding: 24px 0;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 860px) {
+      .menu {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .projects-grid,
+      .skills-grid,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .hero {
+        padding-top: 72px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .hero-card,
+      .contact-card {
+        padding: 22px;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <header>
-    <h1>Matias Campos</h1>
-    <p>Desenvolvedor | Análise de Dados | Dashboards</p>
+  <header class="topbar">
+    <nav class="container nav">
+      <a href="#inicio" class="brand">Matias<span>Campos</span></a>
+      <ul class="menu">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#experiencia">Experiência</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section>
-    <h2>Sobre mim</h2>
-    <div class="card">
-      <p>
-        Sou interessado em desenvolvimento de soluções com dados, criação de dashboards
-        e visualização de informações. Busco transformar dados em ferramentas úteis
-        para análise, organização e tomada de decisão.
-      </p>
-    </div>
-  </section>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Engenharia da Computação • Dados • Segurança</div>
+          <h1>Matias da Silva <span>Campos</span></h1>
+          <p>
+            Graduando em Engenharia da Computação pela UNIFEI, com experiência em suporte técnico,
+            redes TCP/IP, desenvolvimento de software, análise de dados, dashboards e fundamentos de cibersegurança.
+          </p>
+          <div class="actions">
+            <a href="#projetos" class="btn btn-primary">Ver projetos</a>
+            <a href="mailto:matiascampos20@gmail.com" class="btn btn-secondary">Entrar em contato</a>
+            <a href="https://linkedin.com/in/matias-31-campos" target="_blank" class="btn btn-secondary">LinkedIn</a>
+          </div>
+        </div>
 
-  <section>
-    <h2>Habilidades</h2>
-    <div class="card skills">
-      <span>Python</span>
-      <span>Pandas</span>
-      <span>Dashboards</span>
-      <span>Git</span>
-      <span>GitHub</span>
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>Visualização de Dados</span>
-    </div>
-  </section>
+        <aside class="hero-card">
+          <h2>Focos principais</h2>
+          <ul class="quick-list">
+            <li>Desenvolvimento com Python, C, C++ e SQL</li>
+            <li>Análise de dados, dashboards e visualização</li>
+            <li>Redes TCP/IP, Linux e suporte técnico</li>
+            <li>Cibersegurança, Blue Team e análise de vulnerabilidades</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
 
-  <section>
-    <h2>Projetos</h2>
+    <section id="sobre">
+      <div class="container">
+        <div class="section-title">
+          <small>Sobre mim</small>
+          <h2>Perfil técnico com base em desenvolvimento, dados, redes e segurança.</h2>
+          <p>
+            Minha trajetória une experiência prática em suporte técnico e redes com formação acadêmica em Engenharia da Computação,
+            projetos de iniciação científica e desenvolvimento de soluções com dados.
+          </p>
+        </div>
 
-    <div class="card">
-      <h3>Dashboard PRH</h3>
+        <div class="about-grid">
+          <div class="card">
+            <h3>Quem sou</h3>
+            <p>
+              Sou estudante de Engenharia da Computação na Universidade Federal de Itajubá, interessado em criar soluções digitais
+              que transformem dados em informação útil. Tenho experiência com suporte técnico, manutenção de sistemas,
+              redes TCP/IP, desenvolvimento e fundamentos de segurança da informação.
+            </p>
+          </div>
 
-      <p>
-        Dashboard desenvolvido para acompanhar informações e indicadores do programa PRH,
-        organizando dados em uma interface visual e de fácil interpretação.
-      </p>
+          <div class="card">
+            <h3>Áreas de interesse</h3>
+            <p>
+              Busco atuar em projetos que envolvam desenvolvimento de software, análise de dados, automação, dashboards,
+              redes, Linux e cibersegurança defensiva.
+            </p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Dados</span>
+              <span class="tag">Dashboards</span>
+              <span class="tag">Redes</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Cybersecurity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <p>
-        <strong>Problema:</strong> informações dispersas e dificuldade para acompanhar
-        indicadores de forma clara.
-      </p>
+    <section id="projetos">
+      <div class="container">
+        <div class="section-title">
+          <small>Projetos</small>
+          <h2>Projetos em destaque</h2>
+          <p>
+            Projetos acadêmicos e práticos voltados a dados, desenvolvimento, monitoramento e segurança da informação.
+          </p>
+        </div>
 
-      <p>
-        <strong>Solução:</strong> criação de um painel interativo para centralizar dados,
-        visualizar métricas e apoiar a análise.
-      </p>
+        <div class="projects-grid">
+          <article class="card project-card">
+            <h3>Dashboard PRH</h3>
+            <p>
+              Dashboard criado para organizar e visualizar informações relacionadas ao programa PRH-ANP 046.1,
+              facilitando o acompanhamento de indicadores e a análise de dados.
+            </p>
+            <p>
+              <strong>Meu papel:</strong> estruturação do projeto, organização dos dados, criação das visualizações,
+              desenvolvimento do dashboard e documentação no GitHub.
+            </p>
+            <div class="project-meta">
+              <span>Python</span>
+              <span>Dados</span>
+              <span>Dashboard</span>
+              <span>GitHub</span>
+            </div>
+            <div class="project-links">
+              <a href="COLE_AQUI_O_LINK_DO_REPOSITORIO_DASHBOARD_PRH" target="_blank">Ver repositório →</a>
+              <a href="COLE_AQUI_O_LINK_DO_DEPLOY" target="_blank">Ver demonstração →</a>
+            </div>
+          </article>
 
-      <p>
-        <strong>Tecnologias:</strong> Python, Pandas, GitHub e ferramentas de visualização de dados.
-      </p>
+          <article class="card project-card">
+            <h3>Iniciação Científica — Hidrogênio Verde</h3>
+            <p>
+              Participação em projeto acadêmico relacionado ao PRH-ANP 046.1, com foco em hidrogênio verde,
+              análise de informações técnicas e desenvolvimento de competências em pesquisa aplicada.
+            </p>
+            <div class="project-meta">
+              <span>Pesquisa</span>
+              <span>Engenharia</span>
+              <span>Análise de dados</span>
+            </div>
+          </article>
 
-      <p>
-        <a href="COLE_AQUI_O_LINK_DO_REPOSITORIO" target="_blank">Ver projeto no GitHub</a>
-      </p>
-    </div>
+          <article class="card project-card">
+            <h3>Iniciação Científica — CyberSecurity</h3>
+            <p>
+              Projeto acadêmico voltado à segurança da informação, análise de ameaças, boas práticas de proteção,
+              fundamentos de redes e conceitos de defesa cibernética.
+            </p>
+            <div class="project-meta">
+              <span>Cybersecurity</span>
+              <span>Blue Team</span>
+              <span>Redes</span>
+              <span>Vulnerabilidades</span>
+            </div>
+          </article>
 
-  </section>
+          <article class="card project-card">
+            <h3>Monitoramento de Dados com MQTT</h3>
+            <p>
+              Atuação com análise de dados de sensores em sistemas de água e esgoto, utilizando MQTT para comunicação
+              e monitoramento de dados em tempo real.
+            </p>
+            <div class="project-meta">
+              <span>MQTT</span>
+              <span>Sensores</span>
+              <span>Dados em tempo real</span>
+              <span>Saneamento</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>Contato</h2>
-    <div class="card">
-      <p>Email: seuemail@email.com</p>
-      <p>GitHub: <a href="COLE_AQUI_SEU_GITHUB" target="_blank">Meu GitHub</a></p>
-      <p>LinkedIn: <a href="COLE_AQUI_SEU_LINKEDIN" target="_blank">Meu LinkedIn</a></p>
-    </div>
-  </section>
+    <section id="habilidades">
+      <div class="container">
+        <div class="section-title">
+          <small>Habilidades</small>
+          <h2>Competências técnicas</h2>
+          <p>Conjunto de tecnologias e conhecimentos que aplico em projetos, estudos e experiências profissionais.</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="card skill-card">
+            <h3>Desenvolvimento</h3>
+            <ul>
+              <li>Python</li>
+              <li>C e C++</li>
+              <li>SQL</li>
+              <li>HTML</li>
+              <li>WordPress</li>
+              <li>Oracle Apex</li>
+            </ul>
+          </div>
+
+          <div class="card skill-card">
+            <h3>Dados e dashboards</h3>
+            <ul>
+              <li>Análise e organização de dados</li>
+              <li>Visualização de informações</li>
+              <li>Dashboards interativos</li>
+              <li>Tratamento de dados operacionais</li>
+              <li>Monitoramento com sensores</li>
+            </ul>
+          </div>
+
+          <div class="card skill-card">
+            <h3>Redes e segurança</h3>
+            <ul>
+              <li>TCP/IP</li>
+              <li>Linux</li>
+              <li>Fundamentos de cybersecurity</li>
+              <li>Análise de vulnerabilidades</li>
+              <li>Conceitos de pentest</li>
+              <li>Wireshark e Nmap</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia">
+      <div class="container">
+        <div class="section-title">
+          <small>Experiência</small>
+          <h2>Experiência profissional e acadêmica</h2>
+        </div>
+
+        <div class="timeline">
+          <article class="card timeline-item">
+            <div class="timeline-date">2026</div>
+            <div class="timeline-content">
+              <h3>Rennosonic Eficiência em Água e Esgoto — Estagiário em Desenvolvimento</h3>
+              <p>
+                Atuação com análise de dados de sensores em usinas de água e esgoto, comunicação via MQTT,
+                coleta e organização de dados e apoio em soluções para eficiência operacional.
+              </p>
+            </div>
+          </article>
+
+          <article class="card timeline-item">
+            <div class="timeline-date">Jan/2021 – Jan/2023</div>
+            <div class="timeline-content">
+              <h3>Instituto de Física e Química — UNIFEI — Estagiário em TI</h3>
+              <p>
+                Configuração e manutenção de redes TCP/IP, suporte técnico presencial e remoto,
+                apoio em projetos de segurança da informação e diagnóstico de problemas técnicos.
+              </p>
+            </div>
+          </article>
+
+          <article class="card timeline-item">
+            <div class="timeline-date">Jan/2010 – Fev/2011</div>
+            <div class="timeline-content">
+              <h3>Net-Tel Informática — Atendente de Informática</h3>
+              <p>
+                Atendimento ao cliente, suporte técnico, manutenção de computadores e sistemas,
+                além da resolução de problemas de hardware e software.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="formacao">
+      <div class="container">
+        <div class="section-title">
+          <small>Formação</small>
+          <h2>Formação acadêmica</h2>
+        </div>
+
+        <div class="timeline">
+          <article class="card timeline-item">
+            <div class="timeline-date">2021 – 2026</div>
+            <div class="timeline-content">
+              <h3>Universidade Federal de Itajubá — UNIFEI</h3>
+              <p>Bacharelado em Engenharia da Computação.</p>
+            </div>
+          </article>
+
+          <article class="card timeline-item">
+            <div class="timeline-date">2009 – 2010</div>
+            <div class="timeline-content">
+              <h3>ONG Cintilar — São Lourenço/MG</h3>
+              <p>Técnico em Manutenção de Computadores.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificacoes">
+      <div class="container">
+        <div class="section-title">
+          <small>Certificações</small>
+          <h2>Cursos e certificações</h2>
+        </div>
+
+        <div class="cert-grid">
+          <div class="cert-item">Fundamentos de Segurança Cibernética — Cisco</div>
+          <div class="cert-item">CyberSecurity Essentials — UNIFEI</div>
+          <div class="cert-item">CCNA 1: Introdução às Redes — Cisco</div>
+          <div class="cert-item">NDG Linux Unhatched — Cisco</div>
+          <div class="cert-item">Introdução ao Hack e Pentest — Solyd</div>
+          <div class="cert-item">CyberOT ICS — Industrial Networking Essentials</div>
+          <div class="cert-item">Palestra: Ransomware e Segurança Defensiva</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="voluntariado">
+      <div class="container">
+        <div class="section-title">
+          <small>Voluntariado</small>
+          <h2>Experiência social e educacional</h2>
+        </div>
+
+        <div class="card">
+          <p>
+            Atuei como monitor voluntário para alunos carentes, participei de projetos sociais ligados à arrecadação,
+            doação de sangue e apoio comunitário, além de contribuir com avaliação e suporte digital em uma clínica
+            de dependentes químicos. Essas experiências fortaleceram minha comunicação, responsabilidade social,
+            trabalho em equipe e resolução de problemas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contato">
+      <div class="container">
+        <div class="section-title">
+          <small>Contato</small>
+          <h2>Vamos conversar?</h2>
+          <p>Estou aberto a oportunidades, projetos, estágios e colaborações nas áreas de desenvolvimento, dados, redes e cibersegurança.</p>
+        </div>
+
+        <div class="contact-card">
+          <p>E-mail: <a href="mailto:matiascampos20@gmail.com">matiascampos20@gmail.com</a></p>
+          <p>LinkedIn: <a href="https://linkedin.com/in/matias-31-campos" target="_blank">linkedin.com/in/matias-31-campos</a></p>
+          <p>GitHub: <a href="COLE_AQUI_SEU_LINK_DO_GITHUB" target="_blank">Adicionar GitHub</a></p>
+          <p>Localização: Itajubá — MG</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 Matias Campos — Portfólio</p>
+    <div class="container">
+      <p>© 2025 Matias da Silva Campos. Desenvolvido para portfólio profissional.</p>
+    </div>
   </footer>
-
 </body>
 </html>
