@@ -579,6 +579,21 @@
       font-size: 0.9rem;
     }
 
+
+    .visit-counter {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: #dbeafe;
+      font-weight: 700;
+    }
+
+    .visit-counter span {
+      color: #93c5fd;
+      font-size: 1.1rem;
+    }
+
     .contact {
       background: var(--bg);
       color: #ffffff;
@@ -1238,6 +1253,10 @@
           <p>LinkedIn: <a href="https://linkedin.com/in/matias-31-campos" target="_blank" rel="noopener noreferrer">linkedin.com/in/matias-31-campos</a></p>
           <p>GitHub: <a href="https://github.com/MatiasSCampos" target="_blank" rel="noopener noreferrer">github.com/MatiasSCampos</a></p>
           <p>Localização: Itajubá — MG</p>
+
+          <p class="visit-counter">
+            Visitas ao portfólio: <span id="visitorCount">0</span>
+          </p>
         </div>
       </div>
     </section>
@@ -1288,6 +1307,24 @@
         closeImageModal();
       }
     });
+
+    const visitorCounterKey = "matias_portfolio_visitas";
+
+    let totalVisits = localStorage.getItem(visitorCounterKey);
+
+    if (totalVisits === null) {
+      totalVisits = 1;
+    } else {
+      totalVisits = Number(totalVisits) + 1;
+    }
+
+    localStorage.setItem(visitorCounterKey, totalVisits);
+
+    const visitorCountElement = document.getElementById("visitorCount");
+
+    if (visitorCountElement) {
+      visitorCountElement.textContent = totalVisits;
+    }
   </script>
 
 </body>
