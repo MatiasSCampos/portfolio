@@ -1309,16 +1309,15 @@
     });
 
     const visitorCounterKey = "matias_portfolio_visitas";
+    const sessionCounterKey = "matias_portfolio_visita_contada";
 
-    let totalVisits = localStorage.getItem(visitorCounterKey);
+    let totalVisits = Number(localStorage.getItem(visitorCounterKey)) || 0;
 
-    if (totalVisits === null) {
-      totalVisits = 1;
-    } else {
-      totalVisits = Number(totalVisits) + 1;
+    if (!sessionStorage.getItem(sessionCounterKey)) {
+      totalVisits += 1;
+      localStorage.setItem(visitorCounterKey, totalVisits);
+      sessionStorage.setItem(sessionCounterKey, "true");
     }
-
-    localStorage.setItem(visitorCounterKey, totalVisits);
 
     const visitorCountElement = document.getElementById("visitorCount");
 
