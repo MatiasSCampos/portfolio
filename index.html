@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- Google Analytics 4
+       Substitua G-SEU_ID_AQUI pelo seu Measurement ID real do Google Analytics.
+       Exemplo de formato: G-XXXXXXXXXX
+  -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEU_ID_AQUI"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag("js", new Date());
+    gtag("config", "G-SEU_ID_AQUI");
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Portfólio de Matias Campos — desenvolvimento, dados, redes, suporte técnico e cibersegurança." />
@@ -577,21 +592,6 @@
     .credential-date {
       color: var(--muted);
       font-size: 0.9rem;
-    }
-
-
-    .visit-counter {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 14px;
-      padding: 14px 16px;
-      color: #dbeafe;
-      font-weight: 700;
-    }
-
-    .visit-counter span {
-      color: #93c5fd;
-      font-size: 1.1rem;
     }
 
     .contact {
@@ -1253,10 +1253,6 @@
           <p>LinkedIn: <a href="https://linkedin.com/in/matias-31-campos" target="_blank" rel="noopener noreferrer">linkedin.com/in/matias-31-campos</a></p>
           <p>GitHub: <a href="https://github.com/MatiasSCampos" target="_blank" rel="noopener noreferrer">github.com/MatiasSCampos</a></p>
           <p>Localização: Itajubá — MG</p>
-
-          <p class="visit-counter">
-            Visitas ao portfólio: <span id="visitorCount">0</span>
-          </p>
         </div>
       </div>
     </section>
@@ -1308,22 +1304,55 @@
       }
     });
 
-    const visitorCounterKey = "matias_portfolio_visitas";
-    const sessionCounterKey = "matias_portfolio_visita_contada";
 
-    let totalVisits = Number(localStorage.getItem(visitorCounterKey)) || 0;
-
-    if (!sessionStorage.getItem(sessionCounterKey)) {
-      totalVisits += 1;
-      localStorage.setItem(visitorCounterKey, totalVisits);
-      sessionStorage.setItem(sessionCounterKey, "true");
+    /* Eventos extras para acompanhar interações importantes no Google Analytics */
+    function trackPortfolioEvent(eventName, eventCategory, eventLabel) {
+      if (typeof gtag === "function") {
+        gtag("event", eventName, {
+          event_category: eventCategory,
+          event_label: eventLabel
+        });
+      }
     }
 
-    const visitorCountElement = document.getElementById("visitorCount");
+    document.addEventListener("DOMContentLoaded", function () {
+      const resumeLink = document.querySelector('a[href="certificados/curriculo-matias-campos.pdf"]');
+      const emailLink = document.querySelector('a[href^="mailto:"]');
+      const githubLinks = document.querySelectorAll('a[href*="github.com/MatiasSCampos"]');
+      const linkedinLinks = document.querySelectorAll('a[href*="linkedin.com/in/matias-31-campos"]');
+      const certificateLinks = document.querySelectorAll('.cert-link');
 
-    if (visitorCountElement) {
-      visitorCountElement.textContent = totalVisits;
-    }
+      if (resumeLink) {
+        resumeLink.addEventListener("click", function () {
+          trackPortfolioEvent("download_curriculo", "portfolio", "Currículo Matias Campos");
+        });
+      }
+
+      if (emailLink) {
+        emailLink.addEventListener("click", function () {
+          trackPortfolioEvent("clique_email", "contato", "E-mail");
+        });
+      }
+
+      githubLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+          trackPortfolioEvent("clique_github", "contato", "GitHub");
+        });
+      });
+
+      linkedinLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+          trackPortfolioEvent("clique_linkedin", "contato", "LinkedIn");
+        });
+      });
+
+      certificateLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+          trackPortfolioEvent("abrir_certificado", "certificados", link.textContent.trim());
+        });
+      });
+    });
+
   </script>
 
 </body>
